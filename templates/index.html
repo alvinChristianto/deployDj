@@ -1,9 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>{{ title }}</title> 
+
+	{% include "snippets/styles.html" %}
+
+
+
 </head>
 <body>
-<h1>this is index html</h1>
+	
+	{% include "snippets/navbar.html" %}
+	<div class="container">
+		<div class="row bg-faded mt-2">
+			<div class="col-4 mx-auto d-flex justify-content-center flex-wrap">
+				<img class="" src="//placehold.it/300"> <!-- center this image within the column -->
+				<p>centered</p>
+			</div>
+		</div>
+		
+	</div>
+	<!--<div class="container">
+		<h1>this is index registerAPP</h1>
+		<ul>
+			<li><a href="newuser"> Register new user with html form</a></li>
+			<li><a href="newuser_modelform"> Register new user with ModelForm</a></li>
+			<li><a href="newuser_usercreationform"> Register new user with Usercreationform</a></li>
+			<li><a href="listuser"> See all list user</a></li>
+			<!--<li><a href="login"> login user</a></li> 
+		</ul>
+
+	</div>
+-->
+
+
 </body>
-</html>
+</html> 

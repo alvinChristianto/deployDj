@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>list user</title>
+
+	{% include "snippets/styles.html" %}
+
+</head>
+<body>
+	
+	{% include "snippets/navbar.html" %}
+	
+	<div style="padding: 64px ">
+		<div class="container">
+			<div class="container-wrap">
+				<div class="justify-content-md-center">
+					<div class="container">
+						<h1>List User</h1>
+						{% for itemlist in item %}
+						<ul>
+							<li>user with name {{ itemlist.firstname }} and email {{itemlist.email }} </li>
+						</ul>
+						{% endfor %}
+
+						<a href="/newuser">input user</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
