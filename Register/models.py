@@ -25,6 +25,7 @@ class Profile(models.Model) :			##table : registerApp_profile
 	first_name = models.CharField(max_length=100, blank=True)
 	last_name = models.CharField(max_length=100, blank=True)
 	email = models.EmailField(max_length=150)
+	#gender = models.CharField(max_length=6, blank=True)
 	signup_confirmation = models.BooleanField(default=False)
 
 	def __str__(self) :
@@ -34,5 +35,6 @@ class Profile(models.Model) :			##table : registerApp_profile
 def update_profile_signal(sender, instance, created, **kwargs) :	
 	if created :
 		print "update_profile_signal in if created "
-		Profile.objects.create(user=instance)### create data to registerApp_profile using user data from executing form.save() in views_usercreationform.py
+		Profile.objects.create(user=instance)### create data to Register_profile using user data from executing form.save() in views_usercreationform.py
+		#Register.objects.create(user=instance)### create data to Register_register using user data from executing form.save() in views_usercreationform.py
 	instance.profile.save()
