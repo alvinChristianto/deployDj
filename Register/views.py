@@ -35,20 +35,23 @@ def success_login(request) :
 @login_required
 def user_logout(request) :
 	logout(request)
-	return HttpResponseRedirect(reverse('signup_view'))
-
+	#homepagereturn HttpResponseRedirect(reverse('index_register'))
+	return redirect('homepage')
+	
 def index_register(request) :
 	if request.method == 'POST' :
 		form = SignUpForm(data=request.POST)
 		print "creating form %s"%(form.is_valid())
 		if form.is_valid() :
 			print "enter if"
-			user = form.save()		
+			user = form.save() #save to table user_auth, 		
 			user.refresh_from_db()
 			user.profile.first_name = form.cleaned_data.get('first_name')
 			user.profile.last_name = form.cleaned_data.get('last_name')
 			user.profile.email = form.cleaned_data.get('email')
+			user.profile.gender = form.cleaned_data.get('gender')
 			user.is_active = False
+			
 			user.save()			#will trigger signal decorator in models.py (post_save)
 			current_site = get_current_site(request)
 			subject = 'Please activate your account'
@@ -62,17 +65,41 @@ def index_register(request) :
 			email = EmailMessage(
 				subject, message, to=[user.profile.email]
 			)
-			#email.send()
-			print email
+			email.send()
+			#print email
 			#username = form.cleaned_data.get('username')
 			#password = form.cleaned_data.get('password1')
 			#user = authenticate(username=username, password=password)
 			#login(request, user)
+
 			print "~~~~~seharusnya sukse"
 			return redirect('activation_sent')
 	else :
 		form = SignUpForm()
+	
 	return render(request, 'registration/index_register.html', {'form': form})
+
+
+def user_login(request) :
+	if request.method == 'POST' :
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		user = authenticate(username=username, password=password)
+
+		if user :
+			if user.is_active :
+				print "this user is active"
+				login(request, user)
+				return HttpResponseRedirect(reverse('success_login'))
+			else : #tbh no need to do else
+				return HttpResponse("your account still need to be activate")
+		else :
+			print "no user or someone try to login"
+			print "They used username: %s and password: %s"%(username,password)
+			#return HttpResponse('invalid username or passwpord')
+			return redirect('login_invalid')
+	else :
+		return render(request, 'registration/login.html')
 
 
 
@@ -84,6 +111,8 @@ def listuser(request) :
 	}
 	return render(request, 'listuser.html', context)
 
+def login_invalid_view(request) :
+	return render(request, 'registration/login_invalid.html')
 
 def activation_sent_view(request) :
 	return render(request, 'registration/activation_sent.html')

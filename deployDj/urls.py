@@ -21,7 +21,7 @@ from Register import views as registerViews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index), 
+    url(r'^$', views.index, name='homepage'), 
 
     url(r'^', include('Register.urls')), 
 ]

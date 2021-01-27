@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
 	url(r'^register/$', views.index_register, name='index_register'),
     url(r'^listuser/$', views.listuser),
+    url(r'^login/$', views.user_login),
+    url(r'^login_invalid/$', views.login_invalid_view, name='login_invalid'),
 
     url(r'^sent/$', views.activation_sent_view, name="activation_sent"),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name="activate"),
