@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>homepage</title>
+	{% include "snippets/styles.html" %}
 </head>
 <body>
-	<div class="container">
-		<div class="jumbotron">
-			<h1>Welcome to the Djungle !</h1>
+
+	<div class="container-fluid">
+		<div class="justify-content-md-center">
 			{% if user.is_authenticated %}
 			<h2>Hello {{ user.username }}</h2>
 			{% else %}
 			<h2>Register or Login if you'd like to</h2>
 			{% endif %}
+			<p>
+				<a href="{% url 'user_logout' %}" class="btn btn-warning btn-sm">logout</a>
+			</p>
+
 		</div>
 	</div>
 

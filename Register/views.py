@@ -118,6 +118,10 @@ def activation_sent_view(request) :
 	return render(request, 'registration/activation_sent.html')
 
 
+def activation_success_view(request) :
+	return render(request, 'registration/activation_success.html')
+
+
 def activate(request, uidb64, token) :
 	try :
 		uid = force_text(urlsafe_base64_decode(uidb64))
@@ -130,6 +134,6 @@ def activate(request, uidb64, token) :
 		user.profile.signup_confirmation = True
 		user.save()
 		login(request, user)
-		return redirect('/')
+		return redirect('activation-success')
 	else :
 		return render(request, 'registration/activation_invalid.html')
