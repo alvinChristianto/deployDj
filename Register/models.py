@@ -8,24 +8,24 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-class Register(models.Model) :		##table : registerApp_register
+class Register(models.Model) :		##table : Register_register
 	firstname = models.CharField(max_length=30)
 	lastname = models.CharField(max_length=30)
 	email	= models.EmailField(max_length=254)
 	mobilenumber	= models.CharField(max_length=14)
 	dateofbirth = models.DateTimeField( null=True)
-	gender = models.CharField(max_length=10)
+	#gender = models.CharField(max_length=10)
 	created_time = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return "%s"%(format(self.email))
 
-class Profile(models.Model) :			##table : registerApp_profile
+class Profile(models.Model) :			##table : Register_profile
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	first_name = models.CharField(max_length=100, blank=True)
 	last_name = models.CharField(max_length=100, blank=True)
 	email = models.EmailField(max_length=150)
-	#gender = models.CharField(max_length=6, blank=True)
+	gender = models.CharField(max_length=6, blank=True)
 	signup_confirmation = models.BooleanField(default=False)
 
 	def __str__(self) :
@@ -34,7 +34,7 @@ class Profile(models.Model) :			##table : registerApp_profile
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs) :	
 	if created :
-		print "update_profile_signal in if created "
+		
 		Profile.objects.create(user=instance)### create data to Register_profile using user data from executing form.save() in views_usercreationform.py
 		#Register.objects.create(user=instance)### create data to Register_register using user data from executing form.save() in views_usercreationform.py
 	instance.profile.save()

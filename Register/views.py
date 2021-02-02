@@ -10,13 +10,13 @@ from django.utils.encoding import force_bytes
 from .tokens import account_activation_token
 from django.template.loader import render_to_string
 
-from .models import Register
+from .models import Register, Profile
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django import forms
 
-
-from .forms import SignUpForm
+from .forms import SignUpForm, SignUpForm_crispy
 from .tokens import account_activation_token
 
 # Create your views here.
@@ -40,10 +40,13 @@ def user_logout(request) :
 	
 def index_register(request) :
 	if request.method == 'POST' :
-		form = SignUpForm(data=request.POST)
+		#form = SignUpForm(data=request.POST)
+		form = SignUpForm_crispy(data=request.POST)
 		print "creating form %s"%(form.is_valid())
+		print request.POST
 		if form.is_valid() :
 			print "enter if"
+			
 			user = form.save() #save to table user_auth, 		
 			user.refresh_from_db()
 			user.profile.first_name = form.cleaned_data.get('first_name')
@@ -71,11 +74,12 @@ def index_register(request) :
 			#password = form.cleaned_data.get('password1')
 			#user = authenticate(username=username, password=password)
 			#login(request, user)
-
+			
 			print "~~~~~seharusnya sukse"
 			return redirect('activation_sent')
 	else :
-		form = SignUpForm()
+		#form = SignUpForm()
+		form = SignUpForm_crispy()
 	
 	return render(request, 'registration/index_register.html', {'form': form})
 
@@ -105,7 +109,8 @@ def user_login(request) :
 
 
 def listuser(request) :
-	item = Register.objects.all()
+	item = Profile.objects.all()
+
 	context = {
 		'item' 	:	item,
 	}
