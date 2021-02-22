@@ -1,24 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>homepage</title>
-	{% include "snippets/styles.html" %}
+	{% include "snippets/styles.html"%}
 </head>
 <body>
 
 	<div class="container-fluid">
+		{% if user.is_authenticated %}
+		{% include "snippets/navbar.html"  with navbar=loginvalue %}
 		<div class="justify-content-md-center">
-			{% if user.is_authenticated %}
+			
 			<h2>Hello {{ user.username }}</h2>
-			{% else %}
-			<h2>Register or Login if you'd like to</h2>
-			{% endif %}
-			<p>
-				<a href="{% url 'user_logout' %}" class="btn btn-warning btn-sm">logout</a>
-			</p>
+			
+		</div>
+		{% else %}
+		<div class="justify-content-md-center">
+			<div class="justify-content-md-center">
+				<h2>Register or Login if you'd like to</h2>
+			</div>	
+			
 
 		</div>
+		{% endif %}
 	</div>
+
+	{% include "snippets/footerscript.html" %}
 
 </body>
 </html>
