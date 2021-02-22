@@ -10,7 +10,7 @@ class Tb_stock_daily(models.Model) :
 	high = models.FloatField(blank=True)
 	low = models.FloatField(blank=True)
 	close = models.FloatField(blank=True)
-	volume = models.IntegerField(blank=True)
+	volume = models.BigIntegerField(blank=True)
 	market_date = models.DateField(auto_now=False, auto_now_add=False,blank=True)
 	
 	def __str__(self):
