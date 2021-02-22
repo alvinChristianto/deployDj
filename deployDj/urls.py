@@ -17,11 +17,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
 
-from Register import views as registerViews
+#from Register import views as registerViews
+#from databei import views as databeiViews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='homepage'), 
 
     url(r'^', include('Register.urls')), 
+    url(r'^data/', include('databei.urls')), 
 ]

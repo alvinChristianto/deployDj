@@ -30,7 +30,10 @@ def special(request) :
 @login_required
 def success_login(request) : 
 	print "youre login"
-	return render(request, 'registration/success_login.html')
+	context = {
+		'loginvalue' : 1, 
+	}
+	return render(request, 'registration/success_login.html', context)
 
 @login_required
 def user_logout(request) :
@@ -106,7 +109,9 @@ def user_login(request) :
 		return render(request, 'registration/login.html')
 
 
-
+def show_data(request) :
+	print "show data function" 
+	pass
 
 def listuser(request) :
 	item = Profile.objects.all()
