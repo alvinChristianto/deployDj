@@ -40,6 +40,9 @@
 							<th scope="col">#No</th>
 							<th scope="col">Market Date</th>
 							<th scope="col">Stock</th>
+							<th scope="col">Open</th>
+							<th scope="col">High</th>
+							<th scope="col">Low</th>
 							<th scope="col">Close</th>
 							<th scope="col">Volume</th>
 						</tr>
@@ -50,6 +53,9 @@
 							<th scope="row">{{ forloop.counter }}</th>
 							<td>{{ itemlist.market_date }}</td>
 							<td>{{ itemlist.stock_name }}</td>
+							<td>{{ itemlist.openp }}</td>
+							<td>{{ itemlist.high }}</td>
+							<td>{{ itemlist.low }}</td>
 							<td>{{ itemlist.close }}</td>
 							<td>{{ itemlist.volume|intcomma }}</td>
 						</tr>
