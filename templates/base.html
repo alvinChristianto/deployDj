@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Home{% endblock %}</title>
+	{% block site_css %}
+	<link href="{{ MEDIA_URL }}css/reset.css" rel="stylesheet"
+	type="text/css" media="all"/>
+	<link href="{{ MEDIA_URL }}css/base.css" rel="stylesheet"
+	type="text/css" media="screen"/>
+	{% endblock %}
+	
+	{% include "snippets/styles.html" %}
+
+
+	{% block css %}{% endblock %}
+	{% block extra_head %}{% endblock %}
+</head>
+<body>
+	<div class="container-fluid">
+		
+		{% block header %}
+		{% if user.is_authenticated %}
+			{% include "snippets/navbar.html"  with navbar=loginvalue %}
+
+		{% else %}
+			{% include "snippets/navbar.html" %}
+
+		{% endif %}
+		<hr style="border-top: 1px solid #8c8b8b;">
+		{% endblock %}
+		
+		<div id="content">
+			{% block content %} 
+			
+			{% endblock %}
+		</div>
+
+		{% block footer %}
+
+		{% include "snippets/footerscript.html" %}
+		{% endblock %}
+		
+		{% block js %}{% endblock %}
+	</div>
+</body>
+</html>

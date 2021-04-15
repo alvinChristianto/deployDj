@@ -1,21 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Activation sent !</title>
-	{% include "snippets/styles.html" %}
-
-</head>
-<body>
-	<div class="container-fluid">
-		{% include "snippets/navbar.html" %}
-		<div class="justify-content-md-center">
-			<div class="alert alert-success" role="alert">
-				Activation link sent! Please check email.
-			</div>
+{% extends "base.html" %}
+{% block title %}login{% endblock %}
+{% block content %} 
+<div class="row">
+	<div class="justify-content-md-center">
+		<div class="alert alert-success" role="alert">
+			Activation link sent! Please check email.
 		</div>
 	</div>
-
-	{% include "snippets/footerscript.html" %}
-</body>
-</html>
+	{% endblock%}

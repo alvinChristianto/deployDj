@@ -1,47 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{ title }}</title> 
+ 
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12 col-md-6 mb-5 mb-md-0 position-relative">
+		<div class="text-center">
+			<h1 class="display-5"> alvin Christianto</h1>
+			<p class="lead">
+				Please login to see feature ! <br>
+				IHSG market information, contain variuos type of price and volume.	
+			</p>
+			<p>
+				<a href="https://github.com/alvinChristianto" class="btn btn-lg btn-primary">see github</a>
+			</p>
 
-	{% include "snippets/styles.html" %}
-
-
-
-</head>
-<body>	
-	<div class="container-fluid">
-		{% include "snippets/navbar.html" %}
-		<hr style="border-top: 1px solid #8c8b8b;">
-		<div class="row">
-			<div class="col-12 col-md-6 mb-5 mb-md-0 position-relative">
-				<div class="text-center">
-					<h1 class="display-5"> alvin Christianto</h1>
-					<p class="lead">
-						Please login to see feature ! <br>
-						IHSG market information, contain variuos type of price and volume.	
-					</p>
-					<p>
-						<a href="https://github.com/alvinChristianto" class="btn btn-lg btn-primary">see github</a>
-					</p>
-
-				</div>
-			</div>
-			<div class="col-12 col-md-6">
-				<div class="text-center">
-					<h1 class="display-5"> Update :</h1>
-					<p class="lead">
-						scrape data stock  <br>
-						save to db.	
-					</p>
-				</div>
-			</div>
-
-
+		</div>
+	</div>
+	<div class="col-12 col-md-6">
+		<div class="text-center">
+			<h1 class="display-5"> Update :</h1>
+			<p class="lead">
+				scrape data stock  <br>
+				save to db.	
+			</p>
 		</div>
 	</div>
 
 
-	{% include "snippets/footerscript.html" %}
-</body>
-</html> 
+</div>
+{% endblock %}

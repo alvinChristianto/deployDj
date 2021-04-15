@@ -1,43 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	{% include "snippets/styles.html" %}
-</head>
-<body>
-	<div class="container-fluid">
-		{% include "snippets/navbar.html" %}
-		<hr style="border-top: 1px solid #8c8b8b;">
-		<div class="row">
-			<div class="col-md-6 col-lg-4 col-sm-8 mx-auto">
-				<div class="justify-content-md-center">
-					{% load crispy_forms_tags %}
-					{% block content %}
-					<form method="post">
-						{% csrf_token %}
-						<div class="form-row">
-							<div class="form-group col-md-6 mb-0">
-								{{ form.first_name|as_crispy_field }}
-							</div>
-							<div class="form-group col-md-6 mb-0">
-								{{ form.last_name|as_crispy_field }}	
-							</div>
-						</div>
-						{{ form.username|as_crispy_field }}
-						{{ form.email|as_crispy_field }}
-						{{ form.gender|as_crispy_field }}
-						{{ form.password1|as_crispy_field }}
-						{{ form.password2|as_crispy_field }}
-						<button type="submit" class="btn btn-primary">Register</button>
-					</form>
-					{% endblock %}
+ 
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-6 col-lg-4 col-sm-8 mx-auto">
+		<div class="justify-content-md-center">
+			{% load crispy_forms_tags %}
+			{% block content1 %}
+			<form method="post">
+				{% csrf_token %}
+				<div class="form-row">
+					<div class="form-group col-md-6 mb-0">
+						{{ form.first_name|as_crispy_field }}
+					</div>
+					<div class="form-group col-md-6 mb-0">
+						{{ form.last_name|as_crispy_field }}	
+					</div>
 				</div>
-			</div>
+				{{ form.username|as_crispy_field }}
+				{{ form.email|as_crispy_field }}
+				{{ form.gender|as_crispy_field }}
+				{{ form.password1|as_crispy_field }}
+				{{ form.password2|as_crispy_field }}
+				<button type="submit" class="btn btn-primary">Register</button>
+			</form>
+			{% endblock %}
 		</div>
 	</div>
-</body>
-
-
-	{% include "snippets/footerscript.html" %}
-</html>
+</div>
+{% endblock %}

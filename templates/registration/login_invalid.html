@@ -1,22 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Activation sent !</title>
-	{% include "snippets/styles.html" %}
-
-</head>
-<body>
-	<div class="container-fluid">
-
-		{% include "snippets/navbar.html" %}
-
-		<div class="justify-content-md-center">
-			<div class="alert alert-warning" role="alert">
-				Invalid username or password, if you already registring, please check your email to activation !
-			</div>
-		</div>
+{% extends "base.html" %}
+{% block title %}login{% endblock %}
+{% block content %} 
+<div class="justify-content-md-center">
+	<div class="alert alert-warning" role="alert">
+		Invalid username or password, if you already registring, please check your email to activation !
 	</div>
-	{% include "snippets/footerscript.html" %}
-</body>
-</html>
+</div>
+{% endblock%}
